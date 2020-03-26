@@ -10,6 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NumberPuzzleWeb.Core.ApplicationServices;
+using NumberPuzzleWeb.Core.DomainServices;
+using NumberPuzzleWeb.Infrastructure.DataAccess.Repository;
 
 namespace NumberPuzzleWeb
 {
@@ -26,6 +29,9 @@ namespace NumberPuzzleWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSingleton<IGameModelRepository, InMemoryGameModelRepository>();
+            services.AddScoped<GameService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -41,6 +47,7 @@ namespace NumberPuzzleWeb
             app.UseRouting();
 
             app.UseAuthorization();
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
