@@ -4,16 +4,16 @@ using System.Text;
 
 namespace NumberPuzzleWeb.Core.DomainModel
 {
-    public class BaseModel
+    public class BaseEntity
     {
         public Guid Id { get; }
 
-        public BaseModel()
+        public BaseEntity()
         {
             Id = Guid.NewGuid();
         }
 
-        public BaseModel(Guid id)
+        public BaseEntity(Guid id)
         {
             Id = id;
         }
